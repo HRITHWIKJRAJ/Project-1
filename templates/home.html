@@ -1,0 +1,79 @@
+{% load static %}
+
+<html>
+
+<head>
+  <title>Home</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js">
+
+  </script>
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-light" style="padding:10px;">
+    <div class="container-fluid">
+      <div class="navbar-header">
+
+
+        <img src="/static/images/IBS.jpg" width="140px" height="100px" style="margin-top:-26;">
+      </div>
+      <!-- <ul class="nav navbar-nav"> 
+           
+            <li class="active"><a href="#">Home</a></li> 
+           
+            <li><a href="#">About</a></li> 
+            <li><a href="#">Careers</a></li> 
+            
+          </ul>  -->
+      <div align="right">
+        {% if user.is_authenticated %}
+
+        <div class="btn-group">
+          <button class="btn btn-info btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            Welcome, {{ user.first_name }} !
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/admin">Admin</a>
+            <a class="dropdown-item" href="logout">Logout</a>
+
+          </div>
+        </div>
+        {%endif %}
+      </div>
+    </div>
+  </nav>
+<button type="button" class="btn btn-secondary"><a href="review">Review</a></button>
+
+
+  <div class="container">
+    <h2 style="color:#00cccc;" align="center"><b>OUR CUSTOMERS</b></h2>
+    <div class="row">
+      {% for cust in custs %}
+      <div class="col-sm-4" align="center">
+        <h1>{{cust.name}}</h1>
+        <img src="{{cust.img.url}}" style="width: 200px;"><br>
+        <button type="button" onclick="window.location.href= '{{cust.id}}/'" class="btn btn-danger">More Info</button>
+      </div>
+      {% endfor%}
+
+    </div>
+
+  </div>
+  <br>
+  <br>
+  <br>
+  <iframe allow="microphone;" width="350" height="430" align="right"
+    src="https://console.dialogflow.com/api-client/demo/embedded/527de9af-e20a-4373-b803-2611185ae176">
+  </iframe>
+
+</body>
+
+</html>
